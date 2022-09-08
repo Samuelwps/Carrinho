@@ -7,6 +7,10 @@ export const ProductList = styled.ul`
   grid-gap: 20px;
   list-style: none;
 
+  @media screen and (max-width:980px){
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   li {
     display: flex;
     flex-direction: column;
