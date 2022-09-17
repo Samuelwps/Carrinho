@@ -37,7 +37,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const updatedCart = [...cart]
       const productExists = updatedCart.find(product => product.id === productId)
 
-      const stock = await api.get(`/stock/${productId}`)
+      const stockGet = await api.get(`/stock`)
+      const stock = stockGet.data.productId
 
       const stockAmount = stock.data.amount 
       const currentAmount = productExists ? productExists.amount : 0;
@@ -51,7 +52,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if(productExists){
         productExists.amount = amount 
       } else {
-        const product = await api.get(`products/${productId}`)
+        const productGet = await api.get(`/produtos`)
+        const product = productGet.data.productId
 
         const newProduct = {
           ...product.data, 
@@ -75,8 +77,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if(amount <= 0){
         return
       }
-
-      const stock = await api.get(`/stock/${productId}`)
+      const stockGet = await api.get(`/stock`)
+      const stock = stockGet.data.productId
 
       const stockAmount = stock.data.amount 
 
