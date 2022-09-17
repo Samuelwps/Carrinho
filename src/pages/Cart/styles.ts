@@ -12,6 +12,11 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    @media screen and (max-width:600px){
+      display:flex;
+      flex-direction: column;
+    }
+
     button {
       background: #7159c1;
       color: #fff;
@@ -32,15 +37,47 @@ export const Container = styled.div`
 export const ProductTable = styled.table`
   width: 100%;
 
+  
+
+  @media screen and (max-width:600px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    #title{
+      text-align: center;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
   thead th {
     color: #999;
     text-align: left;
     padding: 12px;
   }
 
+  tbody{
+
+    @media screen and (max-width:600px){
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
   tbody td {
     padding: 12px;
-    border-bottom: 1px solid #eee;
+
+    @media screen and (max-width:600px){
+      padding: 2px;
+      display:flex;
+      justify-content: center;
+
+      
+    }
   }
 
   img {

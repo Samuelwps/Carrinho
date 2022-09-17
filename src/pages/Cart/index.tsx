@@ -64,7 +64,7 @@ const Cart = (): JSX.Element => {
                   alt={product.title}
                 />
               </td>
-              <td>
+              <td id="title">
                 <strong>{product.title}</strong>
                 <span>{product.priceFormated}</span>
               </td>
