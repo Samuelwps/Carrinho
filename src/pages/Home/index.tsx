@@ -34,10 +34,11 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     async function loadProducts() {
-      const response:Product[]  = await api.get(`/produtos`)
-      console.log(response)
+      const response  = await api.get(`/produtos`)
 
-      const data = response.map(product => ({
+      const responseData:Product[] = response.data
+
+      const data = responseData.map(product => ({
         ...product,
         priceFormatted: formatPrice(product.price)
       }))
