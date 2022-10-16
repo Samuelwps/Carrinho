@@ -71,3 +71,18 @@ export const ProductList = styled.ul`
     }
   }
 `;
+
+
+export const CircularProgressContainer = styled.div`
+  width:100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div{
+    width:80px;
+    height: 80px;
+  }
+`

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 
-import { ProductList } from './styles';
+import { ProductList, CircularProgressContainer } from './styles';
 import { api } from '../../services/api';
 import { formatPrice } from '../../util/format';
 import { useCart } from '../../hooks/useCart';
+import CircularProgress from "@mui/material/CircularProgress"
+
 
 interface Product {
   id: number;
@@ -25,6 +27,9 @@ const Home = (): JSX.Element => {
   const [products, setProducts] = useState<ProductFormatted[]>([]);
   const { addProduct, cart } = useCart();
 
+  const [call, setCall] = useState(true)
+
+
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
     const newSumAmount = {...sumAmount}
     newSumAmount[product.id] = product.amount
@@ -43,6 +48,7 @@ const Home = (): JSX.Element => {
         priceFormatted: formatPrice(product.price)
       }))
       setProducts(data)
+      setCall(false)
     }
 
     loadProducts();
@@ -52,7 +58,21 @@ const Home = (): JSX.Element => {
     addProduct(id)
   }
 
+  function Call(){
+    return(
+      <CircularProgressContainer>
+        <div>
+        <CircularProgress style={{color: "white", width:"100%", height:"100%" }}/>
+        </div>
+      </CircularProgressContainer>
+    )
+  }
+
   return (
+    <>
+    {call ?
+    <Call/>
+    :
     <ProductList>
       {products.map( product => (
         <li key={product.id}>
@@ -74,6 +94,8 @@ const Home = (): JSX.Element => {
       </li>
       ))}
     </ProductList>
+    }
+    </>
   );
 };
 
